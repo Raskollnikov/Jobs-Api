@@ -9,12 +9,14 @@ import { connectDB } from "./db/connect.js";
 import userRouter from "./routes/auth.js";
 import jobsRouter from "./routes/jobs.js";
 
+import authMiddleware from "../backend/middleware/authentication.js";
+
 const app = express();
 
 app.use(express.json());
 
 app.use("/api/v1/auth", userRouter);
-app.use("/api/v1/jobs", jobsRouter);
+app.use("/api/v1/jobs", authMiddleware, jobsRouter);
 
 app.use(notFound);
 app.use(errorHandlerMiddleware);
