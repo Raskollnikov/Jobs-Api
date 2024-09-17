@@ -14,7 +14,7 @@ import helmet from "helmet";
 import xss from "xss-clean";
 import rateLimit from "express-rate-limit";
 
-import authMiddleware from "../backend/middleware/authentication.js";
+import authMiddleware from "./middleware/authentication.js";
 
 const app = express();
 
