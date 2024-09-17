@@ -9,11 +9,26 @@ import { connectDB } from "./db/connect.js";
 import userRouter from "./routes/auth.js";
 import jobsRouter from "./routes/jobs.js";
 
+import cors from "cors";
+import helmet from "helmet";
+import xss from "xss-clean";
+import rateLimit from "express-rate-limit";
+
 import authMiddleware from "../backend/middleware/authentication.js";
 
 const app = express();
 
+app.set("trust proxy", 1);
+app.use(
+  rateLimit({
+    windowMs: 15 * 60 * 1000,
+    max: 100,
+  })
+);
 app.use(express.json());
+app.use(cors());
+app.use(helmet());
+app.use(xss());
 
 app.use("/api/v1/auth", userRouter);
 app.use("/api/v1/jobs", authMiddleware, jobsRouter);
