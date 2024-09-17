@@ -27,8 +27,7 @@ const getJob = async (req, res) => {
 const createJob = async (req, res) => {
   req.body.createdBy = req.user.userId;
   const job = await jobModel.create(req.body);
-  const jobs = await jobModel.find().populate("createdBy", "name email");
-  console.log(jobs);
+
   res.status(StatusCodes.CREATED).json({ job });
 };
 
