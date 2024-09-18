@@ -14,6 +14,11 @@ import helmet from "helmet";
 import xss from "xss-clean";
 import rateLimit from "express-rate-limit";
 
+//swagger
+import swaggerUI from "swagger-ui-express";
+import YAML from "yamljs";
+const swaggerDocument = YAML.load("./swagger.yaml");
+
 import authMiddleware from "./middleware/authentication.js";
 
 const app = express();
@@ -30,6 +35,10 @@ app.use(cors());
 app.use(helmet());
 app.use(xss());
 
+app.get("/", (req, res) => {
+  res.send("<h1>Jobs Api</h1> <a href='/api-docs'>Documentation</a>");
+});
+app.use("/api-docs", swaggerUI.serve, swaggerUI.setup(swaggerDocument));
 app.use("/api/v1/auth", userRouter);
 app.use("/api/v1/jobs", authMiddleware, jobsRouter);
 
