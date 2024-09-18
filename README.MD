@@ -1,3 +1,7 @@
+#### API Documentation
+
+For detailed API documentation and to test endpoints, visit [Swagger UI Docs](https://jobs-api-backend-c4563190d035.herokuapp.com/api-docs/).
+
 #### Setup
 
 ```bash
@@ -18,11 +22,7 @@ npm install && npm start
 
 #### User Model
 
-Email Validation Regex
 
-```regex
-/^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/
-```
 
 #### Register User
 
@@ -55,15 +55,6 @@ Email Validation Regex
 - xss-clean
 - express-rate-limit
 
-Swagger UI
+Swagger UI Docs Added
 
-```yaml
-/jobs/{id}:
-  parameters:
-    - in: path
-      name: id
-      schema:
-        type: string
-      required: true
-      description: the job id
-```
+I used ChatGPT to write the README :)))
